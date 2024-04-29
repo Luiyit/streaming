@@ -1,9 +1,9 @@
-const NodeMediaServer = require("node-media-server");
+const NodeMediaServer = require('node-media-server');
 
 const httpConfig = {
   port: 8000,
-  allow_origin: "*",
-  mediaroot: "./media",
+  allow_origin: '*',
+  mediaroot: './media',
 };
 
 const rtmpConfig = {
@@ -14,17 +14,21 @@ const rtmpConfig = {
   ping_timeout: 60,
 };
 
+/**
+ * We need the version 4 of ffmpeg
+ * https://askubuntu.com/questions/1360827/safest-way-to-install-latest-stable-ffmpeg-4-3-on-ubuntu-20-04-ppa-not-wor
+ */
 const transformationConfig = {
   ffmpeg: '/usr/bin/ffmpeg',
   tasks: [
     {
-      app: "live",
+      app: 'live',
       hls: true,
-      hlsFlags: "[hls_time=2:hls_list_size=3:hls_flags=delete_segments]",
+      hlsFlags: '[hls_time=2:hls_list_size=3:hls_flags=delete_segments]',
       hlsKeep: false,
     },
   ],
-  MediaRoot: "./media",
+  MediaRoot: './media',
 };
 
 const config = {
@@ -40,10 +44,10 @@ const config = {
 
 const nms = new NodeMediaServer(config);
 
-nms.on("preConnect", (id, args) => {
+nms.on('preConnect', (id, args) => {
   console.log(
-    "[NodeEvent on preConnect]",
-    `id=${id} args=${JSON.stringify(args)}`,
+    '[NodeEvent on preConnect]',
+    `id=${id} args=${JSON.stringify(args)}`
   );
 
   //let session = nms.getSession(id);
@@ -66,66 +70,65 @@ nms.on("preConnect", (id, args) => {
   }*/
 });
 
-nms.on("postConnect", (id, args) => {
+nms.on('postConnect', (id, args) => {
   console.log(
-    "[NodeEvent on postConnect]",
-    `id=${id} args=${JSON.stringify(args)}`,
+    '[NodeEvent on postConnect]',
+    `id=${id} args=${JSON.stringify(args)}`
   );
 });
 
-nms.on("doneConnect", (id, args) => {
+nms.on('doneConnect', (id, args) => {
   console.log(
-    "[NodeEvent on doneConnect]",
-    `id=${id} args=${JSON.stringify(args)}`,
+    '[NodeEvent on doneConnect]',
+    `id=${id} args=${JSON.stringify(args)}`
   );
 });
 
-nms.on("prePublish", (id, StreamPath, args) => {
+nms.on('prePublish', (id, StreamPath, args) => {
   console.log(
-    "[NodeEvent on prePublish]",
-    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`,
+    '[NodeEvent on prePublish]',
+    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`
   );
   // Implement authentication for your streamers...
   // let session = nms.getSession(id);
   // session.reject();
 });
 
-nms.on("postPublish", (id, StreamPath, args) => {
+nms.on('postPublish', (id, StreamPath, args) => {
   console.log(
-    "[NodeEvent on postPublish]",
-    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`,
+    '[NodeEvent on postPublish]',
+    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`
   );
 });
 
-nms.on("donePublish", (id, StreamPath, args) => {
+nms.on('donePublish', (id, StreamPath, args) => {
   console.log(
-    "[NodeEvent on donePublish]",
-    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`,
+    '[NodeEvent on donePublish]',
+    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`
   );
 });
 
-nms.on("prePlay", (id, StreamPath, args) => {
+nms.on('prePlay', (id, StreamPath, args) => {
   console.log(
-    "[NodeEvent on prePlay]",
-    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`,
+    '[NodeEvent on prePlay]',
+    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`
   );
   // let session = nms.getSession(id);
   // session.reject();
 });
 
-nms.on("postPlay", (id, StreamPath, args) => {
+nms.on('postPlay', (id, StreamPath, args) => {
   console.log(
-    "[NodeEvent on postPlay]",
-    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`,
+    '[NodeEvent on postPlay]',
+    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`
   );
 });
 
-nms.on("donePlay", (id, StreamPath, args) => {
+nms.on('donePlay', (id, StreamPath, args) => {
   console.log(
-    "[NodeEvent on donePlay]",
-    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`,
+    '[NodeEvent on donePlay]',
+    `id=${id} StreamPath=${StreamPath} args=${JSON.stringify(args)}`
   );
 });
-
 
 nms.run();
