@@ -25,7 +25,7 @@ const rtmpConfig = {
  * https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/IVS/Client.html#create_channel-instance_method
  */
 const transformationConfig = {
-  ffmpeg: '/usr/bin/ffmpeg',
+  ffmpeg: '/usr/local/bin/ffmpeg',
   tasks: [
     {
       app: 'live',
