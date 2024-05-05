@@ -1,3 +1,7 @@
+const ffmpeg = require('@ffmpeg-installer/ffmpeg');
+console.log('ffmpeg.path, ffmpeg.version');
+console.log(ffmpeg.path, ffmpeg.version);
+
 const NodeMediaServer = require('node-media-server');
 
 const httpConfig = {
@@ -25,7 +29,7 @@ const rtmpConfig = {
  * https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/IVS/Client.html#create_channel-instance_method
  */
 const transformationConfig = {
-  ffmpeg: '/usr/bin/ffmpeg',
+  ffmpeg: ffmpeg.path,
   tasks: [
     {
       app: 'live',
