@@ -17,6 +17,12 @@ const rtmpConfig = {
 /**
  * We need the version 4 of ffmpeg
  * https://askubuntu.com/questions/1360827/safest-way-to-install-latest-stable-ffmpeg-4-3-on-ubuntu-20-04-ppa-not-wor
+ *
+ * Install it on EC2
+ * https://www.youtube.com/watch?v=kudpa3F2oVE&ab_channel=FahdMirza
+ *
+ * Amazon IVS Client class
+ * https://docs.aws.amazon.com/sdk-for-ruby/v3/api/Aws/IVS/Client.html#create_channel-instance_method
  */
 const transformationConfig = {
   ffmpeg: '/usr/bin/ffmpeg',
