@@ -1,7 +1,7 @@
 const NodeMediaServer = require('node-media-server');
 
 const httpConfig = {
-  port: 8000,
+  port: process.env.PORT || 8000,
   allow_origin: '*',
   mediaroot: './media',
 };
